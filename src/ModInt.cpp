@@ -19,7 +19,7 @@ class ModInt {
   constexpr ModInt(const i64 x = 0) : v(x % MOD) {
     if (v < 0) v += MOD;
   }
-  constexpr i64 val() { return v; }
+  constexpr i64 val() const { return v; }
   constexpr ModInt operator+(const ModInt &rhs) const {
     return ModInt(*this) += rhs;
   }
