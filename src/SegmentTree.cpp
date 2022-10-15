@@ -4,6 +4,10 @@ template <class T>
 struct SegmentTree {
   SegmentTree(int n, T e, std::function<T(T, T)> f)
       : _n(n), sz(1 << ceil_pow2(n)), d(2 * sz, e), op(f), id(e) {}
+  SegmentTree(const std::vector<T>& v, T e, std::function<T(T, T)> f)
+      : SegmentTree<T>(v.size(), e, f) {
+    for (int i = 0; i < _n; i++) set(i, v[i]);
+  }
   void set(int p, T x) {
     p += sz;
     d[p] = x;
