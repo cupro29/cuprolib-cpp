@@ -1,36 +1,47 @@
-#include <cstdint>
-template <std::uint_fast64_t mod>
+template <long long MOD>
 class ModInt {
-  using u64 = std::uint_fast64_t;
-  u64 v;
+  using i64 = long long;
+  i64 v;
+  static constexpr bool _is_prime(i64 x) {
+    if (x < 2 || (x % 2 == 0 && x != 2)) return false;
+    for (i64 k = 3; k * k <= x; k += 2) {
+      if (x % k == 0) return false;
+    }
+    return true;
+  }
+  static_assert(0 < MOD, "MOD must be positive number");
+  static_assert(MOD < (i64)(INT32_MAX), "MOD must be less than INT32_MAX");
+  static_assert(_is_prime(MOD), "MOD must be prime number");
 
  public:
-  constexpr ModInt(const u64 x = 0) : v(x % mod) {}
-  constexpr u64 val() { return v; }
-  constexpr ModInt operator+(const Modint rhs) { return Modint(*this) += rhs; }
-  constexpr ModInt operator-(const Modint rhs) { return Modint(*this) -= rhs; }
-  constexpr ModInt operator*(const Modint rhs) { return Modint(*this) *= rhs; }
-  constexpr ModInt operator/(const Modint rhs) { return Modint(*this) /= rhs; }
-  constexpr ModInt &operator+=(const Modint rhs) {
+  constexpr ModInt(const i64 x = 0) : v(x % MOD) {
+    if (v < 0) v += MOD;
+  }
+  constexpr i64 val() { return v; }
+  constexpr ModInt operator+(const ModInt &rhs) { return ModInt(*this) += rhs; }
+  constexpr ModInt operator-(const ModInt &rhs) { return ModInt(*this) -= rhs; }
+  constexpr ModInt operator*(const ModInt &rhs) { return ModInt(*this) *= rhs; }
+  constexpr ModInt operator/(const ModInt &rhs) { return ModInt(*this) /= rhs; }
+  constexpr ModInt &operator+=(const ModInt &rhs) {
     v += rhs.v;
-    if (v >= mod) {
-      v -= mod;
+    if (v >= MOD) {
+      v -= MOD;
     }
     return *this;
   }
-  constexpr ModInt &operator-=(const Modint rhs) {
+  constexpr ModInt &operator-=(const ModInt &rhs) {
     if (v < rhs.v) {
-      v += mod;
+      v += MOD;
     }
     v -= rhs.v;
     return *this;
   }
-  constexpr ModInt &operator*=(const Modint rhs) {
-    v = v * rhs.v % mod;
+  constexpr ModInt &operator*=(const ModInt &rhs) {
+    v = v * rhs.v % MOD;
     return *this;
   }
-  constexpr ModInt &operator/=(Modint rhs) {
-    u64 exp = mod - 2;
+  constexpr ModInt &operator/=(ModInt &rhs) {
+    i64 exp = MOD - 2;
     while (exp) {
       if (exp & 1) {
         *this *= rhs;
@@ -40,16 +51,16 @@ class ModInt {
     }
     return *this;
   }
-  ModInt pow(u64 p) {
-    u64 x = v;
-    u64 res = 1;
+  ModInt pow(i64 p) const {
+    ModInt x = *this, res = 1;
     while (p) {
       if (p & 1) {
-        res = res * x % mod;
+        res = res * x;
       }
-      x = x * x % mod;
+      x = x * x;
       p >>= 1;
     }
-    return ModInt<mod>(res);
+    return res;
   }
+  ModInt inv() const { return pow(MOD - 2); }
 };
