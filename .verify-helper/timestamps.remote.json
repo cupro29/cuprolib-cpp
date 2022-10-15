@@ -1,5 +1,6 @@
 {
 "test/PointAddRangeSum.test.cpp": "2022-10-16 03:25:59 +0900",
+"test/PointSetRangeComposite.test.cpp": "2022-10-16 04:52:09 +0900",
 "test/StaticRMQ.test.cpp": "2022-10-16 03:25:36 +0900",
 "test/StaticRangeSum.test.cpp": "2022-10-16 03:00:05 +0900",
 "test/UnionFInd.test.cpp": "2022-10-16 02:41:38 +0900"
