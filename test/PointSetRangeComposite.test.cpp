@@ -2,7 +2,6 @@
 
 #include <bits/stdc++.h>
 
-#include "../include/BIT"
 #include "../include/modint"
 #include "../include/segtree"
 
