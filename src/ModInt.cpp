@@ -1,3 +1,5 @@
+#include <iostream>
+
 template <long long MOD>
 class ModInt {
   using i64 = long long;
@@ -18,10 +20,20 @@ class ModInt {
     if (v < 0) v += MOD;
   }
   constexpr i64 val() { return v; }
-  constexpr ModInt operator+(const ModInt &rhs) { return ModInt(*this) += rhs; }
-  constexpr ModInt operator-(const ModInt &rhs) { return ModInt(*this) -= rhs; }
-  constexpr ModInt operator*(const ModInt &rhs) { return ModInt(*this) *= rhs; }
-  constexpr ModInt operator/(const ModInt &rhs) { return ModInt(*this) /= rhs; }
+  constexpr ModInt operator+(const ModInt &rhs) const {
+    return ModInt(*this) += rhs;
+  }
+  constexpr ModInt operator-(const ModInt &rhs) const {
+    return ModInt(*this) -= rhs;
+  }
+  constexpr ModInt operator*(const ModInt &rhs) const {
+    return ModInt(*this) *= rhs;
+  }
+  constexpr ModInt operator/(const ModInt &rhs) const {
+    return ModInt(*this) /= rhs;
+  }
+  constexpr bool operator==(const ModInt &rhs) const { return v == rhs.v; }
+  constexpr bool operator!=(const ModInt &rhs) const { return v != rhs.v; }
   constexpr ModInt &operator+=(const ModInt &rhs) {
     v += rhs.v;
     if (v >= MOD) {
@@ -63,4 +75,14 @@ class ModInt {
     return res;
   }
   ModInt inv() const { return pow(MOD - 2); }
+  friend std::istream &operator>>(std::istream &is, ModInt &x) {
+    i64 v;
+    is >> v;
+    x = v;
+    return is;
+  }
+  friend std::ostream &operator<<(std::ostream &os, const ModInt &x) {
+    os << x.val();
+    return os;
+  }
 };
