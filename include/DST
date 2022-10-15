@@ -1,1 +1,1 @@
-#include"../DisjointSparseTable.cpp"
+#include "../src/DisjointSparseTable.cpp"

@@ -1,1 +1,1 @@
-#include"../DualSegmentTree.cpp"
+#include "../src/DualSegmentTree.cpp"

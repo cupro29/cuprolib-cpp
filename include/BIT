@@ -1,1 +1,1 @@
-#include"../BinaryIndexedTree.cpp"
+#include "../src/BinaryIndexedTree.cpp"
