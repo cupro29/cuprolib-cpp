@@ -52,15 +52,8 @@ class ModInt {
     v = v * rhs.v % MOD;
     return *this;
   }
-  constexpr ModInt &operator/=(ModInt &rhs) {
-    i64 exp = MOD - 2;
-    while (exp) {
-      if (exp & 1) {
-        *this *= rhs;
-      }
-      rhs *= rhs;
-      exp >>= 1;
-    }
+  constexpr ModInt &operator/=(const ModInt &rhs) {
+    *this *= rhs.inv();
     return *this;
   }
   ModInt pow(i64 p) const {
