@@ -72,6 +72,7 @@ class AVLTreeSequence {
   }
   Node *fixup(Node *x) {
     (*x).push();
+    (*x).update();
     int lrank = get_rank((*x).left), rrank = get_rank((*x).right);
     if (abs(lrank - rrank) != 2) return x;
     if (lrank - rrank == 2) {
