@@ -72,7 +72,6 @@ class AVLTreeSequence {
   }
   Node *fixup(Node *x) {
     (*x).push();
-    (*x).update();
     int lrank = get_rank((*x).left), rrank = get_rank((*x).right);
     if (abs(lrank - rrank) != 2) return x;
     if (lrank - rrank == 2) {
@@ -148,6 +147,7 @@ class AVLTreeSequence {
   }
   void _set(Node *x, int p, T k) {
     if (x == nullptr) return;
+    (*x).push();
     int lsize = get_size((*x).left);
     if (p < lsize) {
       _set((*x).left, p, k);
@@ -160,6 +160,7 @@ class AVLTreeSequence {
   }
   void _add(Node *x, int p, T k) {
     if (x == nullptr) return;
+    (*x).push();
     int lsize = get_size((*x).left);
     if (p < lsize) {
       _add((*x).left, p, k);
