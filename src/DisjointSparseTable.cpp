@@ -1,8 +1,8 @@
 #include <functional>
 #include <vector>
 template <class T>
-struct DisjointSparseTabel {
-  DisjointSparseTabel(const std::vector<T> &v, std::function<T(T, T)> f)
+struct DisjointSparseTable {
+  DisjointSparseTable(const std::vector<T> &v, std::function<T(T, T)> f)
       : _n(v.size()), op(f) {
     table.emplace_back(v);
     for (int i = 2; i < _n; i <<= 1) {

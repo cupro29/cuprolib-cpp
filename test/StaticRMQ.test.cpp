@@ -11,7 +11,7 @@ int main() {
   std::cin >> N >> Q;
   std::vector<int> a(N);
   for (auto& e : a) std::cin >> e;
-  DisjointSparseTabel<int> dst(a, [](int l, int r) { return std::min(l, r); });
+  DisjointSparseTable<int> dst(a, [](int l, int r) { return std::min(l, r); });
   for (int i = 0; i < Q; i++) {
     int l, r;
     std::cin >> l >> r;
