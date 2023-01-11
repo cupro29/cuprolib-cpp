@@ -13,6 +13,7 @@ class BinomialCoefficients {
     if (n < k || n < 0 || n < k || n > N) return Mint(0);
     return fac[n] * ifac[k] * ifac[n - k];
   }
+  Mint perm(int n, int k) const { return fac[n] * ifac[n - k]; }
   void resize(int n) {
     if (n <= N) return;
     fac.resize(n + 1);
